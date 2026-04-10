@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>INSIDE:LAB - Producción de Eventos & Rental de Equipos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Grain Overlay -->
+  <div class="grain-overlay"></div>
+  
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="header-container">
+      <a href="#" class="logo">INSIDE<span class="accent">:</span>LAB</a>
+      <nav class="nav">
+        <a href="#services" class="nav-link">Servicios</a>
+        <a href="#equipment" class="nav-link">Equipos</a>
+        <a href="#brands" class="nav-link">Marcas</a>
+        <a href="#contact" class="nav-link">Contacto</a>
+      </nav>
+      <a href="#contact" class="btn-outline">Cotizar</a>
+      <button class="menu-toggle" id="menuToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#services" class="mobile-link">Servicios</a>
+    <a href="#equipment" class="mobile-link">Equipos</a>
+    <a href="#brands" class="mobile-link">Marcas</a>
+    <a href="#contact" class="mobile-link">Contacto</a>
+    <a href="#contact" class="btn-primary">Cotizar</a>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <img src="public/hero_event_crowd.jpg" alt="Event crowd">
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="hero-content">
+      <p class="label">Producción de Eventos & Rental</p>
+      <h1 class="hero-title">INSIDE<span class="accent">:</span>LAB</h1>
+      <p class="hero-subtitle">Desde backline hasta iluminación—construido para el momento.</p>
+      <div class="hero-buttons">
+        <a href="#contact" class="btn-primary">Solicitar cotización</a>
+        <a href="#equipment" class="btn-secondary">Ver equipos</a>
+      </div>
+    </div>
+    <div class="scroll-cue">
+      <span>Scroll</span>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 5v14M19 12l-7 7-7-7"/>
+      </svg>
+    </div>
+    <div class="socials">
+      <a href="https://instagram.com" target="_blank" aria-label="Instagram">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+        </svg>
+      </a>
+      <a href="https://youtube.com" target="_blank" aria-label="YouTube">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/>
+          <path d="m10 15 5-3-5-3z"/>
+        </svg>
+      </a>
+      <a href="https://wa.me/1234567890" target="_blank" aria-label="WhatsApp">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="services" id="services">
+    <p class="section-label">Servicios</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <img src="public/service_corporate.jpg" alt="Corporate events">
+        <div class="service-overlay"></div>
+        <div class="service-content">
+          <h3>Eventos Corporativos</h3>
+          <p>Conferencias, lanzamientos y experiencias de marca—planificados de principio a fin.</p>
+          <a href="#corporate" class="service-link">Explorar →</a>
+        </div>
+      </div>
+      <div class="service-card">
+        <img src="public/service_wedding.jpg" alt="Weddings">
+        <div class="service-overlay"></div>
+        <div class="service-content">
+          <h3>Bodas</h3>
+          <p>Diseño, coordinación y proveedores—para que tu día sea perfecto y sin estrés.</p>
+          <a href="#weddings" class="service-link">Explorar →</a>
+        </div>
+      </div>
+      <div class="service-card">
+        <img src="public/service_party.jpg" alt="Private parties">
+        <div class="service-overlay"></div>
+        <div class="service-content">
+          <h3>Fiestas Privadas</h3>
+          <p>Backline, iluminación y equipo—construido para la pista de baile.</p>
+          <a href="#parties" class="service-link">Explorar →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about" id="about">
+    <div class="about-content">
+      <p class="section-label">Nosotros</p>
+      <h2 class="section-title">Construimos eventos que se sienten vivos.</h2>
+      <p class="about-text">INSIDE:LAB es un equipo pequeño con grandes capacidades—diseño de producción, rental de backline, iluminación y crew. Planeamos inteligente, cargamos limpio y mantenemos la sala conectada desde la primera señal hasta el último llamado.</p>
+      <div class="about-buttons">
+        <a href="#team" class="link-arrow">Conoce al equipo →</a>
+        <a href="#work" class="btn-outline">Ver nuestro trabajo</a>
+      </div>
+    </div>
+    <div class="about-image">
+      <img src="public/about_mixer.jpg" alt="Audio mixer">
+    </div>
+  </section>
+
+  <!-- Corporate Section -->
+  <section class="split-section" id="corporate">
+    <div class="split-image">
+      <img src="public/corporate_panel.jpg" alt="Corporate event">
+    </div>
+    <div class="split-content">
+      <p class="section-label">Eventos Corporativos</p>
+      <h2 class="section-title">Conferencias, lanzamientos & experiencias de marca</h2>
+      <p class="split-text">Desde la agenda hasta el AV—manejamos logística, escenografía y coordinación on-site para que tu equipo pueda mantenerse presente.</p>
+      <ul class="feature-list">
+        <li><span class="check">✓</span> Búsqueda de venue & visitas</li>
+        <li><span class="check">✓</span> Diseño de escenario + integración AV</li>
+        <li><span class="check">✓</span> Run-of-show & soporte a speakers</li>
+      </ul>
+      <div class="split-buttons">
+        <button class="btn-secondary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Descargar capacidades
+        </button>
+        <a href="#contact" class="btn-primary">Solicitar cotización →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Weddings Section -->
+  <section class="split-section reverse" id="weddings">
+    <div class="split-content">
+      <p class="section-label">Bodas</p>
+      <h2 class="section-title">Diseñado alrededor de tu historia.</h2>
+      <p class="split-text">Coordinamos proveedores, timelines y detalles de producción—para que tu día sea perfecto, sin estrés y profundamente personal.</p>
+      <ul class="feature-list">
+        <li><span class="check">✓</span> Planificación & diseño de timeline</li>
+        <li><span class="check">✓</span> Curación & coordinación de proveedores</li>
+        <li><span class="check">✓</span> Decoración, iluminación y floor plans</li>
+      </ul>
+      <div class="split-buttons">
+        <button class="btn-secondary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+            <line x1="16" y1="2" x2="16" y2="6"/>
+            <line x1="8" y1="2" x2="8" y2="6"/>
+            <line x1="3" y1="10" x2="21" y2="10"/>
+          </svg>
+          Ver paquetes
+        </button>
+        <a href="#contact" class="btn-primary">Agendar consulta →</a>
+      </div>
+    </div>
+    <div class="split-image">
+      <img src="public/wedding_dance.jpg" alt="Wedding dance">
+    </div>
+  </section>
+
+  <!-- Private Parties Section -->
+  <section class="split-section" id="parties">
+    <div class="split-image">
+      <img src="public/party_crowd.jpg" alt="Party crowd">
+    </div>
+    <div class="split-content">
+      <p class="section-label">Fiestas Privadas</p>
+      <h2 class="section-title">Construido para la pista de baile.</h2>
+      <p class="split-text">Sonido, iluminación y backline—entregado limpio y afinado a la sala. Mantenemos la noche en movimiento.</p>
+      <ul class="feature-list">
+        <li><span class="check">✓</span> Rental de DJ & backline en vivo</li>
+        <li><span class="check">✓</span> Iluminación de pista + FX</li>
+        <li><span class="check">✓</span> Setup, soundcheck & técnico on-site</li>
+      </ul>
+      <div class="split-buttons">
+        <button class="btn-secondary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
+            <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
+          </svg>
+          Ver disponibilidad
+        </button>
+        <a href="#contact" class="btn-primary">Solicitar cotización →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Equipment Section -->
+  <section class="split-section reverse" id="equipment">
+    <div class="split-content">
+      <p class="section-label">Rental de Equipos</p>
+      <h2 class="section-title">Backline, iluminación & gear de producción.</h2>
+      <p class="split-text">Kits confiables, probados antes de cada load-in. Recogida o delivery—adaptamos el rig a tu venue.</p>
+      <ul class="feature-list">
+        <li><span class="check">✓</span> PA, mixers, micrófonos & decks DJ</li>
+        <li><span class="check">✓</span> Iluminación de escenario & control</li>
+        <li><span class="check">✓</span> Truss, stands, cables & power</li>
+      </ul>
+      <div class="split-buttons">
+        <button class="btn-secondary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="8" y1="6" x2="21" y2="6"/>
+            <line x1="8" y1="12" x2="21" y2="12"/>
+            <line x1="8" y1="18" x2="21" y2="18"/>
+            <line x1="3" y1="6" x2="3.01" y2="6"/>
+            <line x1="3" y1="12" x2="3.01" y2="12"/>
+            <line x1="3" y1="18" x2="3.01" y2="18"/>
+          </svg>
+          Ver lista de equipos
+        </button>
+        <a href="#contact" class="btn-primary">Preguntar por paquetes →</a>
+      </div>
+    </div>
+    <div class="split-image">
+      <img src="public/gear_rack.jpg" alt="Equipment rack">
+    </div>
+  </section>
+
+  <!-- Testimonial Section -->
+  <section class="testimonial">
+    <div class="testimonial-content">
+      <svg class="quote-icon" width="120" height="120" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+      </svg>
+      <blockquote>
+        "INSIDE:LAB convirtió nuestro lanzamiento en una experiencia real—señales precisas, sonido limpio y un equipo que realmente resuelve problemas sobre la marcha."
+      </blockquote>
+      <div class="testimonial-author">
+        <img src="public/testimonial_portrait.jpg" alt="Daniela Rios">
+        <div>
+          <p class="author-name">Daniela Rios</p>
+          <p class="author-role">Marketing Director, North Region</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Brands Section -->
+  <section class="brands" id="brands">
+    <div class="brands-header">
+      <p class="section-label">Marcas que confían</p>
+      <h2 class="section-title">Equipamiento profesional de las mejores marcas</h2>
+    </div>
+    <div class="brands-carousel">
+      <div class="brands-track">
+        <img src="public/brands/pioneer-dj.png" alt="Pioneer DJ" class="brand-logo">
+        <img src="public/brands/alphatheta.png" alt="AlphaTheta" class="brand-logo">
+        <img src="public/brands/play-differently.png" alt="PLAYdifferently" class="brand-logo">
+        <img src="public/brands/allen-heath.png" alt="Allen & Heath" class="brand-logo">
+        <img src="public/brands/yamaha.jpg" alt="Yamaha" class="brand-logo">
+        <img src="public/brands/jbl.png" alt="JBL" class="brand-logo">
+        <img src="public/brands/shure.png" alt="Shure" class="brand-logo">
+        <img src="public/brands/sennheiser.png" alt="Sennheiser" class="brand-logo">
+        <img src="public/brands/martin-audio.png" alt="Martin Audio" class="brand-logo">
+        <img src="public/brands/chauvet.png" alt="Chauvet" class="brand-logo">
+        <img src="public/brands/ma-lighting.png" alt="MA Lighting" class="brand-logo">
+        <img src="public/brands/avolites.png" alt="Avolites" class="brand-logo">
+        <img src="public/brands/das-audio.png" alt="DAS Audio" class="brand-logo">
+        <img src="public/brands/db-technologies.png" alt="dB Technologies" class="brand-logo">
+        <img src="public/brands/ld-systems.jpg" alt="LD Systems" class="brand-logo">
+        <!-- Duplicate for seamless loop -->
+        <img src="public/brands/pioneer-dj.png" alt="Pioneer DJ" class="brand-logo">
+        <img src="public/brands/alphatheta.png" alt="AlphaTheta" class="brand-logo">
+        <img src="public/brands/play-differently.png" alt="PLAYdifferently" class="brand-logo">
+        <img src="public/brands/allen-heath.png" alt="Allen & Heath" class="brand-logo">
+        <img src="public/brands/yamaha.jpg" alt="Yamaha" class="brand-logo">
+        <img src="public/brands/jbl.png" alt="JBL" class="brand-logo">
+        <img src="public/brands/shure.png" alt="Shure" class="brand-logo">
+        <img src="public/brands/sennheiser.png" alt="Sennheiser" class="brand-logo">
+        <img src="public/brands/martin-audio.png" alt="Martin Audio" class="brand-logo">
+        <img src="public/brands/chauvet.png" alt="Chauvet" class="brand-logo">
+        <img src="public/brands/ma-lighting.png" alt="MA Lighting" class="brand-logo">
+        <img src="public/brands/avolites.png" alt="Avolites" class="brand-logo">
+        <img src="public/brands/das-audio.png" alt="DAS Audio" class="brand-logo">
+        <img src="public/brands/db-technologies.png" alt="dB Technologies" class="brand-logo">
+        <img src="public/brands/ld-systems.jpg" alt="LD Systems" class="brand-logo">
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact" id="contact">
+    <div class="contact-header">
+      <h2 class="section-title">Construyamos tu próximo evento.</h2>
+      <p class="contact-subtitle">Cuéntanos qué estás planeando. Te responderemos con disponibilidad y siguientes pasos.</p>
+    </div>
+    <div class="contact-grid">
+      <form class="contact-form" id="contactForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Nombre</label>
+            <input type="text" id="name" name="name" placeholder="Tu nombre" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="tu@email.com" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="eventDate">Fecha del evento</label>
+            <input type="date" id="eventDate" name="eventDate">
+          </div>
+          <div class="form-group">
+            <label for="eventType">Tipo de evento</label>
+            <select id="eventType" name="eventType">
+              <option value="">Selecciona</option>
+              <option value="corporate">Corporativo</option>
+              <option value="wedding">Boda</option>
+              <option value="party">Fiesta privada</option>
+              <option value="concert">Concierto</option>
+              <option value="other">Otro</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="message">Mensaje</label>
+          <textarea id="message" name="message" rows="5" placeholder="Cuéntanos sobre tu evento..." required></textarea>
+        </div>
+        <button type="submit" class="btn-primary btn-full">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="22" y1="2" x2="11" y2="13"/>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+          </svg>
+          Enviar mensaje
+        </button>
+      </form>
+      <div class="contact-info">
+        <h3>Información de contacto</h3>
+        <div class="info-list">
+          <a href="mailto:hello@insidelab.studio" class="info-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+            <span>hello@insidelab.studio</span>
+          </a>
+          <a href="tel:+15550142200" class="info-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+            <span>+1 (555) 014-2200</span>
+          </a>
+          <div class="info-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+            <span>Lun–Sáb: 10:00–20:00</span>
+          </div>
+          <div class="info-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+            <span>Los Angeles, CA — disponibles para viajar</span>
+          </div>
+        </div>
+        <div class="response-note">
+          <h4>Respuesta rápida</h4>
+          <p>Respondemos todas las consultas dentro de las 24 horas. Para eventos urgentes, contáctanos directamente por WhatsApp.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-top">
+        <a href="#" class="logo">INSIDE<span class="accent">:</span>LAB</a>
+        <nav class="footer-nav">
+          <a href="#services">Servicios</a>
+          <a href="#equipment">Equipos</a>
+          <a href="#brands">Marcas</a>
+          <a href="#contact">Contacto</a>
+        </nav>
+        <div class="footer-socials">
+          <a href="https://instagram.com" target="_blank" aria-label="Instagram">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+            </svg>
+          </a>
+          <a href="https://facebook.com" target="_blank" aria-label="Facebook">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+            </svg>
+          </a>
+          <a href="https://youtube.com" target="_blank" aria-label="YouTube">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/>
+              <path d="m10 15 5-3-5-3z"/>
+            </svg>
+          </a>
+          <a href="https://wa.me/1234567890" target="_blank" aria-label="WhatsApp">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2024 INSIDE:LAB. Todos los derechos reservados.</p>
+        <div class="footer-links">
+          <a href="#">Política de privacidad</a>
+          <a href="#">Términos de servicio</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Floating Button -->
+  <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer" class="whatsapp-btn" aria-label="Contactar por WhatsApp">
+    <span class="whatsapp-pulse"></span>
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+    </svg>
+    <span class="whatsapp-tooltip">Chatea con nosotros</span>
+  </a>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast">
+    <div class="toast-content">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+        <polyline points="22 4 12 14.01 9 11.01"/>
+      </svg>
+      <div>
+        <strong>Mensaje enviado</strong>
+        <p>Nos pondremos en contacto contigo pronto.</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
