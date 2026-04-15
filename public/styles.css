@@ -128,6 +128,11 @@ button {
   border-color: rgba(255, 255, 255, 0.4);
 }
 
+.rental-link {
+  @extend .btn-secondary;
+  display: inline-flex !important;
+}
+
 .btn-outline {
   display: inline-flex;
   align-items: center;
