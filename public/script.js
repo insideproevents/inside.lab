@@ -268,90 +268,35 @@ window.addEventListener('load', function() {
   });
 });
 
-// Scroll Animations - Simple and reliable
+// Simple fade-in animation on scroll (non-blocking)
 (function() {
-  // Add CSS animation styles directly
   const style = document.createElement('style');
-  style.id = 'scroll-animations';
   style.textContent = `
-    .fade-up { opacity: 0; transform: translateY(50px); }
-    .fade-up.active { 
-      animation: fadeUpAnim 0.8s ease-out forwards;
+    .fade-in { 
+      opacity: 0; 
+      transform: translateY(30px); 
+      transition: opacity 0.6s ease, transform 0.6s ease; 
     }
-    @keyframes fadeUpAnim {
-      from { opacity: 0; transform: translateY(50px); }
-      to { opacity: 1; transform: translateY(0); }
+    .fade-in.visible { 
+      opacity: 1; 
+      transform: translateY(0); 
     }
-    .fade-left { opacity: 0; transform: translateX(-50px); }
-    .fade-left.active { animation: fadeLeftAnim 0.8s ease-out forwards; }
-    @keyframes fadeLeftAnim {
-      from { opacity: 0; transform: translateX(-50px); }
-      to { opacity: 1; transform: translateX(0); }
-    }
-    .fade-right { opacity: 0; transform: translateX(50px); }
-    .fade-right.active { animation: fadeRightAnim 0.8s ease-out forwards; }
-    @keyframes fadeRightAnim {
-      from { opacity: 0; transform: translateX(50px); }
-      to { opacity: 1; transform: translateX(0); }
-    }
-    .scale-up { opacity: 0; transform: scale(0.8); }
-    .scale-up.active { animation: scaleUpAnim 0.6s ease-out forwards; }
-    @keyframes scaleUpAnim {
-      from { opacity: 0; transform: scale(0.8); }
-      to { opacity: 1; transform: scale(1); }
-    }
-    .stagger-1 { animation-delay: 0.1s; }
-    .stagger-2 { animation-delay: 0.2s; }
-    .stagger-3 { animation-delay: 0.3s; }
-    .stagger-4 { animation-delay: 0.4s; }
-    .stagger-5 { animation-delay: 0.5s; }
   `;
   document.head.appendChild(style);
   
-  // Wait for DOM ready
   setTimeout(function() {
-    initAnimations();
-  }, 200);
-  
-  function initAnimations() {
-    const sections = document.querySelectorAll('section');
-    const cards = document.querySelectorAll('.service-card');
-    const splitContents = document.querySelectorAll('.split-content');
-    const splitImages = document.querySelectorAll('.split-image');
-    const features = document.querySelectorAll('.feature-list li');
+    const elements = document.querySelectorAll('section, .service-card, .split-content, .split-image');
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
     
-    // Add classes and animate on load with stagger
-    let delay = 0;
-    sections.forEach(function(el, i) {
-      setTimeout(function() {
-        el.classList.add('fade-up', 'active');
-      }, delay * 150);
-      delay++;
+    elements.forEach(function(el) {
+      el.classList.add('fade-in');
+      observer.observe(el);
     });
-    
-    cards.forEach(function(el, i) {
-      setTimeout(function() {
-        el.classList.add('fade-up', 'stagger-' + (i + 1));
-      }, (delay + i) * 150);
-    });
-    delay += cards.length;
-    
-    splitContents.forEach(function(el, i) {
-      setTimeout(function() {
-        el.classList.add(i % 2 === 0 ? 'fade-left' : 'fade-right', 'active');
-      }, (delay + i) * 150);
-    });
-    
-    splitImages.forEach(function(el, i) {
-      setTimeout(function() {
-        el.classList.add('scale-up', 'active');
-      }, (delay + splitContents.length + i) * 150);
-    });
-    
-    features.forEach(function(el, i) {
-      setTimeout(function() {
-        el.classList.add('fade-up', 'stagger-' + (i + 1));
-      }, (delay + splitContents.length + splitImages.length + i) * 150);
-    });
-  }
+  }, 500);
 })();
