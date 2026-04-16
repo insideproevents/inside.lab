@@ -268,35 +268,4 @@ window.addEventListener('load', function() {
   });
 });
 
-// Simple fade-in animation on scroll (non-blocking)
-(function() {
-  const style = document.createElement('style');
-  style.textContent = `
-    .fade-in { 
-      opacity: 0; 
-      transform: translateY(30px); 
-      transition: opacity 0.6s ease, transform 0.6s ease; 
-    }
-    .fade-in.visible { 
-      opacity: 1; 
-      transform: translateY(0); 
-    }
-  `;
-  document.head.appendChild(style);
-  
-  setTimeout(function() {
-    const elements = document.querySelectorAll('section, .service-card, .split-content, .split-image');
-    const observer = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.1 });
-    
-    elements.forEach(function(el) {
-      el.classList.add('fade-in');
-      observer.observe(el);
-    });
-  }, 500);
-})();
+
