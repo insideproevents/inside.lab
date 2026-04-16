@@ -268,24 +268,50 @@ window.addEventListener('load', function() {
   });
 });
 
-// Scroll Animations
+// Scroll Animations - Execute immediately and add styles
 (function() {
-  const animatedElements = document.querySelectorAll('section, .service-card, .split-section, .split-content, .split-image, .testimonial-content, .brand-card, .contact-card, .feature-list li, .about-content, .testimonial-author');
+  // Add animation styles dynamically
+  const style = document.createElement('style');
+  style.textContent = `
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    .animate-on-scroll.animated {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .animate-on-scroll.delay-1 { transition-delay: 0.1s; }
+    .animate-on-scroll.delay-2 { transition-delay: 0.2s; }
+    .animate-on-scroll.delay-3 { transition-delay: 0.3s; }
+  `;
+  document.head.appendChild(style);
   
-  const observerOptions = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.1
-  };
-  
-  const observer = new IntersectionObserver(function(entries) {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
+  // Wait a bit for DOM to be ready
+  setTimeout(function() {
+    const animatedElements = document.querySelectorAll('section, .service-card, .split-section, .split-content, .split-image, .testimonial-content, .brand-card, .contact-card, .feature-list li, .about-content, .testimonial-author');
+    console.log('Animation elements found:', animatedElements.length);
+    
+    const observerOptions = {
+      root: null,
+      rootMargin: '50px',
+      threshold: 0.05
+    };
+    
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animated');
+          console.log('Animated:', entry.target.className);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+    
+    animatedElements.forEach(function(el) {
+      el.classList.add('animate-on-scroll');
+      observer.observe(el);
     });
-  }, observerOptions);
-  
-  animatedElements.forEach(el => observer.observe(el));
+  }, 100);
 })();
