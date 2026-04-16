@@ -268,50 +268,90 @@ window.addEventListener('load', function() {
   });
 });
 
-// Scroll Animations - Execute immediately and add styles
+// Scroll Animations - Simple and reliable
 (function() {
-  // Add animation styles dynamically
+  // Add CSS animation styles directly
   const style = document.createElement('style');
+  style.id = 'scroll-animations';
   style.textContent = `
-    .animate-on-scroll {
-      opacity: 0;
-      transform: translateY(50px);
-      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    .fade-up { opacity: 0; transform: translateY(50px); }
+    .fade-up.active { 
+      animation: fadeUpAnim 0.8s ease-out forwards;
     }
-    .animate-on-scroll.animated {
-      opacity: 1;
-      transform: translateY(0);
+    @keyframes fadeUpAnim {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-    .animate-on-scroll.delay-1 { transition-delay: 0.1s; }
-    .animate-on-scroll.delay-2 { transition-delay: 0.2s; }
-    .animate-on-scroll.delay-3 { transition-delay: 0.3s; }
+    .fade-left { opacity: 0; transform: translateX(-50px); }
+    .fade-left.active { animation: fadeLeftAnim 0.8s ease-out forwards; }
+    @keyframes fadeLeftAnim {
+      from { opacity: 0; transform: translateX(-50px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    .fade-right { opacity: 0; transform: translateX(50px); }
+    .fade-right.active { animation: fadeRightAnim 0.8s ease-out forwards; }
+    @keyframes fadeRightAnim {
+      from { opacity: 0; transform: translateX(50px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    .scale-up { opacity: 0; transform: scale(0.8); }
+    .scale-up.active { animation: scaleUpAnim 0.6s ease-out forwards; }
+    @keyframes scaleUpAnim {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .stagger-1 { animation-delay: 0.1s; }
+    .stagger-2 { animation-delay: 0.2s; }
+    .stagger-3 { animation-delay: 0.3s; }
+    .stagger-4 { animation-delay: 0.4s; }
+    .stagger-5 { animation-delay: 0.5s; }
   `;
   document.head.appendChild(style);
   
-  // Wait a bit for DOM to be ready
+  // Wait for DOM ready
   setTimeout(function() {
-    const animatedElements = document.querySelectorAll('section, .service-card, .split-section, .split-content, .split-image, .testimonial-content, .brand-card, .contact-card, .feature-list li, .about-content, .testimonial-author');
-    console.log('Animation elements found:', animatedElements.length);
+    initAnimations();
+  }, 200);
+  
+  function initAnimations() {
+    const sections = document.querySelectorAll('section');
+    const cards = document.querySelectorAll('.service-card');
+    const splitContents = document.querySelectorAll('.split-content');
+    const splitImages = document.querySelectorAll('.split-image');
+    const features = document.querySelectorAll('.feature-list li');
     
-    const observerOptions = {
-      root: null,
-      rootMargin: '50px',
-      threshold: 0.05
-    };
-    
-    const observer = new IntersectionObserver(function(entries) {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animated');
-          console.log('Animated:', entry.target.className);
-          observer.unobserve(entry.target);
-        }
-      });
-    }, observerOptions);
-    
-    animatedElements.forEach(function(el) {
-      el.classList.add('animate-on-scroll');
-      observer.observe(el);
+    // Add classes and animate on load with stagger
+    let delay = 0;
+    sections.forEach(function(el, i) {
+      setTimeout(function() {
+        el.classList.add('fade-up', 'active');
+      }, delay * 150);
+      delay++;
     });
-  }, 100);
+    
+    cards.forEach(function(el, i) {
+      setTimeout(function() {
+        el.classList.add('fade-up', 'stagger-' + (i + 1));
+      }, (delay + i) * 150);
+    });
+    delay += cards.length;
+    
+    splitContents.forEach(function(el, i) {
+      setTimeout(function() {
+        el.classList.add(i % 2 === 0 ? 'fade-left' : 'fade-right', 'active');
+      }, (delay + i) * 150);
+    });
+    
+    splitImages.forEach(function(el, i) {
+      setTimeout(function() {
+        el.classList.add('scale-up', 'active');
+      }, (delay + splitContents.length + i) * 150);
+    });
+    
+    features.forEach(function(el, i) {
+      setTimeout(function() {
+        el.classList.add('fade-up', 'stagger-' + (i + 1));
+      }, (delay + splitContents.length + splitImages.length + i) * 150);
+    });
+  }
 })();
