@@ -15,16 +15,17 @@
 </head>
 <body>
   <!-- Header -->
-  <header class="header" id="header">
+  <header class="header" id="header" style="background-color: transparent; transition: all 0.3s ease; position: sticky; top: 0; z-index: 1000;">
     <div class="header-container">
       <a href="./" class="logo">INSIDE<span class="accent">:</span>LAB</a>
       <nav class="nav">
-        <a href="./#services" class="nav-link">Servicios</a>
-        <a href="./rental/#equipment" class="nav-link active">Rental</a>
-        <a href="./#brands" class="nav-link">Marcas</a>
-        <a href="./#contact" class="nav-link">Contacto</a>
+        <a href="./" class="nav-link" style="text-transform:uppercase">Inicio</a>
+        <a href="./#services" class="nav-link" style="text-transform:uppercase">Servicios</a>
+        <a href="./rental/#equipment" class="nav-link active" style="text-transform:uppercase">Rental</a>
+        <a href="./#brands" class="nav-link" style="text-transform:uppercase">Marcas</a>
+        <a href="./#contact" class="nav-link" style="text-transform:uppercase">Contacto</a>
       </nav>
-      <a href="./#contact" class="btn-outline">Cotizar</a>
+      <a href="./#contact" class="btn-outline" style="text-transform:uppercase">Cotizar</a>
       <button class="menu-toggle" id="menuToggle">
         <span></span>
         <span></span>
@@ -35,11 +36,12 @@
 
   <!-- Mobile Menu -->
   <div class="mobile-menu" id="mobileMenu">
-    <a href="./#services" class="mobile-link">Servicios</a>
-    <a href="./rental/#equipment" class="mobile-link">Rental</a>
-    <a href="./#brands" class="mobile-link">Marcas</a>
-    <a href="./#contact" class="mobile-link">Contacto</a>
-    <a href="./#contact" class="btn-primary">Cotizar</a>
+    <a href="./" class="mobile-link" style="text-transform:uppercase">Inicio</a>
+    <a href="./#services" class="mobile-link" style="text-transform:uppercase">Servicios</a>
+    <a href="./rental/#equipment" class="mobile-link" style="text-transform:uppercase">Rental</a>
+    <a href="./#brands" class="mobile-link" style="text-transform:uppercase">Marcas</a>
+    <a href="./#contact" class="mobile-link" style="text-transform:uppercase">Contacto</a>
+    <a href="./#contact" class="btn-primary" style="text-transform:uppercase">Cotizar</a>
   </div>
 
   <div id="root"></div>
