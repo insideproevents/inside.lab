@@ -268,4 +268,25 @@ window.addEventListener('load', function() {
   });
 });
 
+// Standardized animations - cross-browser compatible
+setTimeout(function() {
+  var elements = document.querySelectorAll('section, .service-card, .split-content, .split-image, .feature-list li, .brand-card');
+  for (var i = 0; i < elements.length; i++) {
+    var el = elements[i];
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+    el.style.WebkitTransform = 'translateY(30px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    el.style.WebkitTransition = 'opacity 0.5s ease, transform 0.5s ease';
+    
+    (function(element, index) {
+      setTimeout(function() {
+        element.style.opacity = '1';
+        element.style.transform = 'translateY(0)';
+        element.style.WebkitTransform = 'translateY(0)';
+      }, index * 150);
+    })(el, i);
+  }
+}, 300);
+
 

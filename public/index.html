@@ -472,20 +472,5 @@
   </div>
 
   <script src="script.js"></script>
-  <script>
-    // Direct animation application
-    var elements = document.querySelectorAll('section, .service-card, .split-content, .split-image, .feature-list li, .brand-card');
-    elements.forEach(function(el, i) {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(30px)';
-      el.style.transition = 'all 0.6s ease-out';
-      (function(elem, index) {
-        setTimeout(function() {
-          elem.style.opacity = '1';
-          elem.style.transform = 'translateY(0)';
-        }, index * 150);
-      })(el, i);
-    });
-  </script>
 </body>
 </html>
