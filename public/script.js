@@ -270,12 +270,12 @@ window.addEventListener('load', function() {
 
 // Scroll Animations
 (function() {
-  const animatedElements = document.querySelectorAll('.fade-in-section, .slide-in-left, .slide-in-right, .scale-in, .service-card, .split-section, .split-content, .split-image, .feature-list li, .testimonial-content, .brand-card, .contact-card');
+  const animatedElements = document.querySelectorAll('section, .service-card, .split-section, .split-content, .split-image, .testimonial-content, .brand-card, .contact-card, .feature-list li, .about-content, .testimonial-author');
   
   const observerOptions = {
     root: null,
     rootMargin: '0px',
-    threshold: 0.15
+    threshold: 0.1
   };
   
   const observer = new IntersectionObserver(function(entries) {

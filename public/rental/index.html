@@ -51,9 +51,31 @@
   <div id="root"></div>
 
   <script src="../script.js"></script>
+  <script>
+    (function() {
+      const animatedElements = document.querySelectorAll('.min-h-screen, section, .service-card, .split-section, .split-content, .split-image, .testimonial-content, .brand-card, .contact-card, .feature-list li');
+      const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+      const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+      animatedElements.forEach(el => observer.observe(el));
+    })();
+  </script>
   <style>
-    .fade-in-section { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
-    .fade-in-section.visible { opacity: 1; transform: translateY(0); }
+    section, .service-card, .split-section, .split-content, .split-image, .testimonial-content, .brand-card, .contact-card, .feature-list li, .about-content {
+      opacity: 0;
+      transform: translateY(60px) scale(0.95);
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    section.visible, .service-card.visible, .split-section.visible, .split-content.visible, .split-image.visible, .testimonial-content.visible, .brand-card.visible, .contact-card.visible, .feature-list li.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
   </style>
   <script type="module" crossorigin src="assets/index-uTgSp89C.js"></script>
 </body>
