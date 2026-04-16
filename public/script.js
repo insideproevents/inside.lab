@@ -267,3 +267,25 @@ window.addEventListener('load', function() {
     img.src = src;
   });
 });
+
+// Scroll Animations
+(function() {
+  const animatedElements = document.querySelectorAll('.fade-in-section, .slide-in-left, .slide-in-right, .scale-in, .service-card, .split-section, .split-content, .split-image, .feature-list li, .testimonial-content, .brand-card, .contact-card');
+  
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.15
+  };
+  
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+  
+  animatedElements.forEach(el => observer.observe(el));
+})();
