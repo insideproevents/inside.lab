@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rental - Test de Carga</title>
+  <style>
+    body { font-family: Arial; background: #1a1a1a; color: #fff; padding: 2rem; }
+    .status { padding: 1rem; margin: 1rem 0; border-radius: 8px; }
+    .ok { background: #2d5a2d; border: 1px solid #4CAF50; }
+    .fail { background: #5a2d2d; border: 1px solid #f44336; }
+    .warn { background: #5a4a2d; border: 1px solid #ff9800; }
+    pre { background: #0E1220; padding: 1rem; border-radius: 4px; overflow-x: auto; margin-top: 0.5rem; }
+    a { color: #73f7b7; }
+  </style>
+</head>
+<body>
+  <h1>🔧 Rental Page - Verificación de Restauración</h1>
+
+  <div class="status ok">
+    <strong>✅ ARCHIVO RESTAURADO</strong>
+    <p>El archivo <code>public/rental/index.html</code> ha sido restaurado a su versión original (64 líneas)</p>
+  </div>
+
+  <div class="status warn">
+    <strong>📋 QUÉ DEBERÍA VER EN ESTA PÁGINA</strong>
+    <pre>
+1. Header con menú de navegación (Inicio, Servicios, Rental, Marcas, Contacto)
+2. Botón "Cotizar" a la derecha
+3. Menú mobile hamburguesa
+4. DIV #root (punto de montaje React)
+5. React y ReactDOM cargados desde CDN
+6. script.js cargado (menú móvil, scroll, etc.)
+7. Bundle React: assets/index-uTgSp89C.js (catálogo + modal)
+    </pre>
+  </div>
+
+  <div class="status ok">
+    <strong>✅ ARCHIVOS VERIFICADOS</strong>
+    <pre>
+✓ index.html (64 líneas) - RESTAURADO
+✓ styles.css - Estilos globales
+✓ script.js - JavaScript global
+✓ assets/index-CHzd7RjS.css - CSS bundle (80KB)
+✓ assets/index-uTgSp89C.js - JS bundle React (21KB)
+✓ images/ - Directorio de imágenes
+    </pre>
+  </div>
+
+  <div class="status fail">
+    <strong>⚠️ ERRORES POSIBLES</strong>
+    <pre>
+Si la página se ve en blanco:
+1. Abrir consola (F12) → pestaña Console
+2. Buscar errores: "React is not defined", "Ur is not defined"
+3. Si hay error 404 de index-uTgSp89C.js → verificar que el archivo existe en assets/
+4. Si las imágenes no cargan → es normal (fallback a placeholder)
+    </pre>
+  </div>
+
+  <div class="status ok">
+    <strong>🚀 CÓMO PROBAR</strong>
+    <pre>
+Opción 1: Servidor local
+  cd public
+  live-server --port=8080 --spa
+  → Abre: http://localhost:8080/rental/
+
+Opción 2: Directo
+  open public/rental/index.html
+    </pre>
+    <p><a href="rental/">→ Ir a la página Rental</a></p>
+  </div>
+
+  <hr style="margin: 2rem 0; border-color: #333;">
+
+  <h2>📊 Diagnóstico Técnico</h2>
+  <pre>
+Versión restaurada: c3b5bd0 (primera implementación)
+Estructura:
+  ├── Header (sticky, background #070A12)
+  ├── Mobile Menu (full-screen overlay)
+  ├── div#root → React monta aquí
+  ├── React 18 CDN (production)
+  ├── ReactDOM 18 CDN
+  ├── Window shim (ba=r, mr=ReactDOM)
+  ├── script.js (menu toggle, scroll)
+  └── assets/index-uTgSp89C.js (bundle React con catálogo)
+
+Funcionalidad React (en bundle):
+  • Estado: selectedProduct, filter, currentImage
+  • Filtros: Todos / CDJs / Mezcladores
+  • Modal: galería de imágenes con navigation
+  • Teclado: Escape (cerrar), ← → (navegar)
+  • 12 productos con galería de 4 fotos cada uno
+
+CSS:
+  • Global: ../styles.css (sitio completo)
+  • Específico: inline + assets/index-CHzd7RjS.css
+    </pre>
+
+  <p style="margin-top: 2rem; color: #A6A9B6; font-size: 0.875rem;">
+    <strong>Nota:</strong> Si el bundle React (index-uTgSp89C.js) está corrupto o desactualizado,<br>
+    la página podría fallar al montar. En ese caso, regenerar el bundle con rental-catalog.js + rental-app.js.
+  </p>
+</body>
+</html>
