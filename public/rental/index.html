@@ -1,65 +1,66 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rental - INSIDE:LAB</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../styles.css">
   <style>
     .bg-dark-light.sticky, .bg-dark.py-2, nav.bg-dark { display: none !important; }
     .header.scrolled { background-color: #070A12 !important; backdrop-filter: none !important; }
     .header { background-color: #070A12 !important; }
     .nav-link:hover { color: #73f7b7 !important; }
     .btn-outline:hover { background-color: #73f7b7 !important; color: #070A12 !important; }
+    /* Rental app styles */
+    .rental-app { min-height: 100vh; background: #070A12; color: #F4F6FF; }
+    .app-header { background: #0E1220; border-bottom: 1px solid rgba(244,246,255,0.1); }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+    .filters { display: flex; gap: 0.5rem; flex-wrap: wrap; padding: 2rem 0; justify-content: center; }
+    .filters button { background: transparent; border: 1px solid rgba(244,246,255,0.2); color: #A6A9B6; padding: 0.5rem 1rem; border-radius: 999px; cursor: pointer; transition: all 0.3s; }
+    .filters button:hover { border-color: #73f7b7; color: #73f7b7; }
+    .filters button.active { background: #73f7b7; color: #070A12; border-color: #73f7b7; font-weight: 600; }
+    .catalog { padding: 2rem 0 4rem; }
+    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem; }
+    .product-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(244,246,255,0.1); border-radius: 12px; overflow: hidden; transition: all 0.3s ease; cursor: pointer; }
+    .product-card:hover { transform: translateY(-4px); border-color: #73f7b7; box-shadow: 0 8px 32px rgba(115,247,183,0.15); }
+    .product-image { aspect-ratio: 1; background: #0E1220; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; }
+    .product-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+    .product-card:hover .product-image img { transform: scale(1.05); }
+    .product-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(7,10,18,0.9), transparent); display: flex; align-items: flex-end; padding: 1rem; opacity: 0; transition: opacity 0.3s; }
+    .product-card:hover .product-overlay { opacity: 1; }
+    .view-details { color: #73f7b7; font-size: 0.875rem; font-weight: 500; }
+    .product-info { padding: 1rem; }
+    .product-info h3 { font-family: 'Sora', sans-serif; font-size: 1.125rem; font-weight: 600; color: #F4F6FF; margin: 0 0 0.25rem; }
+    .product-info p { font-size: 0.875rem; color: #A6A9B6; margin: 0; }
+    .category-badge { display: inline-block; font-size: 0.75rem; background: rgba(115,247,183,0.1); color: #73f7b7; padding: 0.25rem 0.5rem; border-radius: 4px; margin-top: 0.5rem; }
+    /* Modal */
+    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 1rem; backdrop-filter: blur(8px); }
+    .modal-content { background: #0E1220; border: 1px solid rgba(244,246,255,0.1); border-radius: 16px; max-width: 900px; width: 100%; max-height: 90vh; overflow-y: auto; position: relative; }
+    .modal-close { position: absolute; top: 1rem; right: 1rem; width: 32px; height: 32px; background: rgba(255,255,255,0.1); border: none; border-radius: 50%; color: #F4F6FF; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10; transition: all 0.3s; }
+    .modal-close:hover { background: #73f7b7; color: #070A12; }
+    .modal-gallery { position: relative; }
+    .gallery-main { aspect-ratio: 16/9; background: #070A12; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .gallery-main img { width: 100%; height: 100%; object-fit: contain; }
+    .gallery-thumbs { display: flex; gap: 0.5rem; padding: 1rem; overflow-x: auto; }
+    .gallery-thumb { width: 80px; height: 60px; background: #070A12; border: 2px solid transparent; border-radius: 8px; overflow: hidden; cursor: pointer; flex-shrink: 0; opacity: 0.5; transition: all 0.3s; }
+    .gallery-thumb.active, .gallery-thumb:hover { border-color: #73f7b7; opacity: 1; }
+    .gallery-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .modal-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; background: rgba(0,0,0,0.5); border: 1px solid rgba(244,246,255,0.1); color: #F4F6FF; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s; z-index: 5; }
+    .modal-nav:hover { background: #73f7b7; color: #070A12; }
+    .modal-prev { left: 1rem; }
+    .modal-next { right: 1rem; }
+    .modal-info { padding: 1.5rem; }
+    .modal-info h2 { font-family: 'Sora', sans-serif; font-size: 1.5rem; font-weight: 700; color: #F4F6FF; margin: 0 0 0.5rem; }
+    .modal-info .category { font-size: 0.75rem; color: #73f7b7; text-transform: uppercase; }
+    .modal-info .description { color: #A6A9B6; line-height: 1.6; margin: 1rem 0; }
+    .specs-list { margin: 1.5rem 0; }
+    .specs-list h3 { font-size: 0.875rem; color: #73f7b7; text-transform: uppercase; margin: 0 0 1rem; }
+    .spec-item { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.75rem; }
+    .spec-item .bullet { width: 4px; height: 4px; background: #73f7b7; border-radius: 50%; margin-top: 0.5rem; flex-shrink: 0; }
+    .spec-item span { color: #A6A9B6; font-size: 0.875rem; line-height: 1.5; }
+    .modal-actions { display: flex; gap: 1rem; padding: 1.5rem; border-top: 1px solid rgba(244,246,255,0.1); }
+    .btn-primary, .btn-secondary { flex: 1; padding: 0.875rem 1.5rem; border-radius: 8px; font-family: 'Sora', sans-serif; font-weight: 600; font-size: 0.875rem; text-transform: uppercase; cursor: pointer; transition: all 0.3s; border: none; }
+    .btn-primary { background: #73f7b7; color: #070A12; }
+    .btn-primary:hover { background: #9dfecd; }
+    .btn-secondary { background: transparent; border: 1px solid rgba(244,246,255,0.2); color: #F4F6FF; }
+    .btn-secondary:hover { border-color: #73f7b7; color: #73f7b7; }
+    @media (max-width: 640px) {
+      .container { padding: 0 0.75rem; }
+      .product-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .modal-content { border-radius: 12px; }
+      .modal-actions { flex-direction: column; }
+    }
   </style>
-  <link rel="stylesheet" href="assets/index-CHzd7RjS.css">
-</head>
-  <body>
-    <!-- Header -->
-    <header class="header" id="header" style="background-color: #070A12; transition: all 0.3s ease; position: sticky; top: 0; z-index: 1000;">
-      <div class="header-container">
-      <a href="../index.html" class="logo">INSIDE<span class="accent">:</span>LAB</a>
-      <nav class="nav">
-        <a href="../index.html" class="nav-link" style="text-transform:uppercase">Inicio</a>
-        <a href="../#services" class="nav-link" style="text-transform:uppercase">Servicios</a>
-        <a href="../#equipment" class="nav-link active" style="text-transform:uppercase">Rental</a>
-        <a href="../#brands" class="nav-link" style="text-transform:uppercase">Marcas</a>
-        <a href="../#contact" class="nav-link" style="text-transform:uppercase">Contacto</a>
-      </nav>
-      <a href="../#contact" class="btn-outline" style="text-transform:uppercase">Cotizar</a>
-      <button class="menu-toggle" id="menuToggle">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-    </div>
-  </header>
-
-  <!-- Mobile Menu -->
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="../index.html" class="mobile-link" style="text-transform:uppercase">Inicio</a>
-    <a href="../#services" class="mobile-link" style="text-transform:uppercase">Servicios</a>
-    <a href="../#equipment" class="mobile-link" style="text-transform:uppercase">Rental</a>
-    <a href="../#brands" class="mobile-link" style="text-transform:uppercase">Marcas</a>
-    <a href="../#contact" class="mobile-link" style="text-transform:uppercase">Contacto</a>
-    <a href="../#contact" class="btn-primary" style="text-transform:uppercase">Cotizar</a>
-  </div>
-
-  <div id="root"></div>
-
-  <!-- React and ReactDOM from CDN -->
-  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-  <script>
-    window.ba = React;
-    window.r = React;
-    window.mr = ReactDOM;
-  </script>
-
-  <script src="../script.js"></script>
-  <script type="module" crossorigin src="assets/index-uTgSp89C.js?v=2"></script>
-</body>
-</html>
