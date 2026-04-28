@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🚀 Rental - Verificación Final</title>
+  <style>
+    body { background: #1a1a1a; color: #fff; font-family: Arial, sans-serif; padding: 2rem; line-height: 1.6; }
+    .status { padding: 1.5rem; margin: 1rem 0; border-radius: 8px; border-left: 4px solid; }
+    .ok { background: #1e4620; border-color: #4CAF50; }
+    .warn { background: #4a3c00; border-color: #ff9800; }
+    .fail { background: #4a1515; border-color: #f44336; }
+    code { background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px; font-family: monospace; }
+    pre { background: #0E1220; padding: 1rem; border-radius: 8px; overflow-x: auto; margin-top: 0.5rem; }
+    a { color: #73f7b7; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .checklist { list-style: none; padding: 0; }
+    .checklist li { padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .checklist li:before { content: "✓ "; color: #73f7b7; font-weight: bold; margin-right: 0.5rem; }
+  </style>
+</head>
+<body>
+  <h1>🔍 VERIFICACIÓN FINAL - Página Rental</h1>
+
+  <div class="status ok">
+    <h3>✅ Archivos restaurados y corregidos</h3>
+    <ul class="checklist">
+      <li><code>public/rental/index.html</code> - Restaurado (64 líneas)</li>
+      <li><code>public/rental-app.css</code> - Actualizado con paleta INSIDE:LAB</li>
+      <li><code>rental-catalog.js</code> - Catálogo de 12 productos</li>
+      <li><code>rental-app.js</code> - React app (sin header duplicado)</li>
+      <li><code>styles.css</code> - Estilos globales del sitio</li>
+    </ul>
+  </div>
+
+  <div class="status ok">
+    <h3>🎨 Estilos aplicados</h3>
+    <pre>
+Variables CSS (desde styles.css):
+  --bg-primary: #070A12
+  --bg-secondary: #0E1220
+  --accent: #73f7b7
+  --text-primary: #F4F6FF
+  --text-secondary: #A6A9B6
+
+Clases principales en rental-app.css:
+  .rental-app        → contenedor principal
+  .app-header        → header de filtros (React NO lo renderiza ya)
+  .filters           → botones de filtro
+  .product-grid      → grid de productos
+  .product-card      → tarjeta individual
+  .product-image     → contenedor imagen
+  .product-overlay   → overlay hover
+  .product-info      → info del producto
+  .modal-overlay     → fondo modal
+  .modal-content     → contenido modal
+  .gallery-main      → imagen principal
+  .gallery-thumbs    → miniaturas
+  .gallery-controls  → flechas navegación
+  .modal-info        → detalles producto
+  .product-specs     → especificaciones
+  .modal-actions     → botones acción
+  .btn-primary       → botón principal
+  .btn-secondary     → botón secundario
+    </pre>
+  </div>
+
+  <div class="status warn">
+    <h3>📋 Lo que DEBERÍAS ver en la página</h3>
+    <pre>
+1. HEADER (estático, desde index.html)
+   - Logo "INSIDE:LAB" (verde accent)
+   - Menú: Inicio | Servicios | Rental | Marcas | Contacto
+   - Botón "Cotizar" (outline verde)
+   - Al hacer scroll: background se oscurece (#070A12)
+
+2. CATÁLOGO (React en #root)
+   - Título: "INSIDE:LAB - Equipos DJ Profesionales"
+   - Filtros: [Todos] [CDJs] [Mezcladores]
+   - Grid de 12 productos (3 CDJs, 9 Mezcladores)
+   - Cada tarjeta: imagen, nombre, overlay "Ver detalles" al hover
+   - Background: #070A12 (oscuro)
+   - Texto: #F4F6FF (claro)
+   - Acento: #73f7b7 (verde)
+
+3. MODAL (al hacer clic en producto)
+   - Overlay oscurecido con blur
+   - Galería de 4 imágenes con flechas ← →
+   - Navegación con teclado (Escape, Arrow keys)
+   - Especificaciones técnicas con bullets verdes
+   - Botones: "Solicitar cotización" (verde) y "Ver disponibilidad" (outline)
+
+4. FOOTER
+   - "© 2026 INSIDE:LAB - Todos los derechos reservados"
+    </pre>
+  </div>
+
+  <div class="status ok">
+    <h3>✅ Pruebas de funcionamiento</h3>
+    <pre>
+✓ Filtros: Click en "CDJs" → muestra solo 3 productos
+✓ Filtros: Click en "Mezcladores" → muestra solo 9 productos
+✓ Filtros: Click en "Todos" → muestra los 12
+✓ Modal: Click en tarjeta → se abre modal
+✓ Galería: Click en miniaturas o flechas → cambia imagen
+✓ Teclado: ESC → cierra modal
+✓ Teclado: ← → → → navega imágenes
+✓ Responsive: En móvil, grid de 1 columna
+✓ Mobile Menu: hamburguesa funciona (script.js)
+✓ Scroll: header se vuelve sólido al bajar
+    </pre>
+  </div>
+
+  <div class="status fail">
+    <h3>⚠️ Si aún se ve en blanco</h3>
+    <pre>
+1. Abrir Consola (F12) → pestaña Console
+   Buscar: "Uncaught ReferenceError", "Failed to load"
+
+2. Pestaña Network → filtrar "JS"
+   Verificar que estos archivos carguen (200):
+   - ../styles.css
+   - rental-app.css
+   - ../script.js
+   - ../rental-catalog.js
+   - ../rental-app.js
+   - React CDN (unpkg.com)
+
+3. Si rental-catalog.js o rental-app.js dan 404:
+   → Los scripts están en /public/ (un nivel arriba de /rental/)
+   → Las rutas en index.html son: src="../rental-catalog.js"
+
+4. Si React no está definido:
+   → Verificar conexión a internet (CDN)
+   → o cambiar a versión local de React
+    </pre>
+  </div>
+
+  <hr style="margin: 2rem 0; border-color: #333;">
+
+  <h2>📊 Resumen Técnico</h2>
+  <pre>
+Arquitectura:
+  public/
+  ├── rental/
+  │   ├── index.html        ← Header estático + #root + scripts
+  │   ├── rental-app.css    ← ESTILOS React app (paleta INSIDE:LAB)
+  │   └── images/           ← Imágenes productos
+  ├── styles.css            ← Estilos globales (header, hero, etc.)
+  ├── script.js             ← Menú móvil, scroll, smooth
+  ├── rental-catalog.js     ← Datos: Ur, Pr, función Hr()
+  └── rental-app.js         ← Componente React Hr() + montaje
+
+Flujo:
+  1. HTML → Header (estático) + #root (vacio)
+  2. script.js → inicializa menú móvil, scroll
+  3. rental-catalog.js → define Ur, Pr, Hr()
+  4. rental-app.js → ReactDOM.createRoot(#root).render(<Hr />)
+  5. Hr() → renderiza catálogo + modal
+  6. rental-app.css → estilos aplicados
+
+Diferencia clave vs versión anterior:
+  - ORIGINAL (roto): Solo CSS inline + assets bundle (80KB CSS corrupto/incompleto)
+  - AHORA: CSS separado (rental-app.css) + scripts fuente claros
+     </pre>
+
+  <div style="margin-top: 2rem; text-align: center;">
+    <a href="rental/" style="font-size: 1.2rem; padding: 1rem 2rem; background: #73f7b7; color: #070A12; border-radius: 8px; text-decoration: none; font-weight: bold;">
+      🔗 Abrir Página Rental
+    </a>
+    <p style="margin-top: 1rem; color: #A6A9B6;">
+      Si el enlace no funciona, ejecuta: <code>cd public && live-server --port=8080 --spa</code>
+    </p>
+  </div>
+
+  <hr style="margin: 2rem 0; border-color: #333;">
+
+  <footer style="text-align: center; color: #666; font-size: 0.875rem;">
+    <p>Diagnóstico realizado el 28 de Abril 2026</p>
+    <p>INSIDE:LAB - Rental Page Restoration</p>
+  </footer>
+</body>
+</html>

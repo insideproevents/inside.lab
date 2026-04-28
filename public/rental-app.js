@@ -222,25 +222,186 @@ const Pr = {
   }
 };
 
-// Función Hr(): Renderiza la UI completa con catálogo y modal interactivo
+// Función Hr(): Renderiza el catálogo y modal (sin header, el header está en el HTML)
 function Hr() {
   const [selectedProduct, setSelectedProduct] = React.useState(null);
   const [currentImageIndex, setCurrentImageIndex] = React.useState(0);
   const [filter, setFilter] = React.useState('all');
 
-  // Cierra el modal
   const closeModal = () => {
     setSelectedProduct(null);
     setCurrentImageIndex(0);
   };
 
-  // Navegación del carrusel
   const nextImage = () => {
-    if (selectedProduct && selectedProduct.gallery) {
-      setCurrentImageIndex((prev) => 
+    if (selectedProduct && selectedProduct.gallery && selectedProduct.gallery.length > 1) {
+      setCurrentImageIndex((prev) =>
         prev === selectedProduct.gallery.length - 1 ? 0 : prev + 1
       );
     }
+  };
+
+  const prevImage = () => {
+    if (selectedProduct && selectedProduct.gallery && selectedProduct.gallery.length > 1) {
+      setCurrentImageIndex((prev) =>
+        prev === 0 ? selectedProduct.gallery.length - 1 : prev - 1
+      );
+    }
+  };
+
+  React.useEffect(() => {
+    const handleKeyPress = (e) => {
+      if (!selectedProduct) return;
+      switch(e.key) {
+        case 'Escape':
+          closeModal();
+          break;
+        case 'ArrowRight':
+          nextImage();
+          break;
+        case 'ArrowLeft':
+          prevImage();
+          break;
+        default:
+          break;
+      }
+    };
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, [selectedProduct]);
+
+  const filteredProducts = filter === 'all'
+    ? Ur
+    : Ur.filter(p => p.category === filter);
+
+  return React.createElement('div', { className: 'rental-app' },
+    // Catálogo principal (sin header, el header está en el HTML estático)
+    React.createElement('main', { className: 'catalog' },
+      React.createElement('div', { className: 'container' },
+        React.createElement('div', { className: 'product-grid' },
+          filteredProducts.map((product) => {
+            const details = Pr[product.id];
+            return React.createElement('div', {
+              key: product.id,
+              className: 'product-card',
+              onClick: () => setSelectedProduct({ ...product, ...details }),
+              role: 'button',
+              tabIndex: 0,
+              'aria-label': `Ver detalles de ${product.name}`
+            },
+              React.createElement('div', { className: 'product-image' },
+                React.createElement('img', {
+                  src: product.image,
+                  alt: product.name,
+                  onError: (e) => {
+                    e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjRjRGNEY0Ii8+Cjx0ZXh0IHg9IjEwMCIgeT0iMTAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiNGRkZGRkYiPllvdXIgSW1hZ2VcLjwvdGV4dD4KPC9zdmc+';
+                  }
+                }),
+                React.createElement('div', { className: 'product-overlay' },
+                  React.createElement('span', { className: 'view-details' }, 'Ver detalles →')
+                )
+              ),
+              React.createElement('div', { className: 'product-info' },
+                React.createElement('h3', null, product.name)
+              )
+            );
+          })
+        )
+      )
+    ),
+
+    // Modal interactivo con galería
+    selectedProduct && React.createElement('div', {
+      className: 'modal-overlay',
+      onClick: closeModal,
+      role: 'dialog',
+      'aria-modal': 'true',
+      'aria-labelledby': 'modal-title'
+    },
+      React.createElement('div', {
+        className: 'modal-content',
+        onClick: e => e.stopPropagation()
+      },
+        // Botón cerrar modal
+        React.createElement('button', {
+          className: 'modal-close',
+          onClick: closeModal,
+          'aria-label': 'Cerrar modal'
+        }, '×'),
+
+        // Galería de fotos interactiva
+        React.createElement('div', { className: 'modal-gallery' },
+          React.createElement('div', { className: 'gallery-main' },
+            selectedProduct.gallery && selectedProduct.gallery.length > 0 && (
+              React.createElement('img', {
+                src: selectedProduct.gallery[currentImageIndex],
+                alt: `${selectedProduct.name} - Imagen ${currentImageIndex + 1}`,
+                onError: (e) => {
+                  e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDUwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjRjRGNEY0Ii8+Cjx0ZXh0IHg9IjI1MCIgeT0iMTUwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiNGRkZGRkYiPklkZWEgZGUgbGFzIGltYWdlc1w8L3RleHQ+Cjwvc3ZnPg==';
+                }
+              })
+            )
+          ),
+
+          // Miniaturas de la galería
+          selectedProduct.gallery && selectedProduct.gallery.length > 1 && React.createElement('div', { className: 'gallery-thumbs' },
+            selectedProduct.gallery.map((img, idx) =>
+              React.createElement('img', {
+                key: idx,
+                src: img,
+                alt: `${selectedProduct.name} - miniatura ${idx + 1}`,
+                className: currentImageIndex === idx ? 'active' : '',
+                onClick: (e) => {
+                  e.stopPropagation();
+                  setCurrentImageIndex(idx);
+                },
+                onError: (e) => {
+                  e.target.style.display = 'none';
+                }
+              })
+            )
+          ),
+
+          // Controles de navegación del carrusel
+          selectedProduct.gallery && selectedProduct.gallery.length > 1 && (
+            React.createElement('div', { className: 'gallery-controls' },
+              React.createElement('button', {
+                className: 'gallery-nav prev',
+                onClick: (e) => { e.stopPropagation(); prevImage(); },
+                'aria-label': 'Imagen anterior'
+              }, '‹'),
+              React.createElement('button', {
+                className: 'gallery-nav next',
+                onClick: (e) => { e.stopPropagation(); nextImage(); },
+                'aria-label': 'Imagen siguiente'
+              }, '›')
+            )
+          )
+        ),
+
+        // Información detallada del producto
+        React.createElement('div', { className: 'modal-info' },
+          React.createElement('h2', { id: 'modal-title' }, selectedProduct.name),
+          React.createElement('p', { className: 'product-desc' }, selectedProduct.desc),
+
+          React.createElement('div', { className: 'product-specs' },
+            React.createElement('h3', null, 'Especificaciones Técnicas'),
+            React.createElement('ul', null,
+              selectedProduct.specs.map((spec, idx) =>
+                React.createElement('li', { key: idx }, spec)
+              )
+            )
+          ),
+
+          React.createElement('div', { className: 'modal-actions' },
+            React.createElement('button', { className: 'btn-primary' }, 'Solicitar cotización'),
+            React.createElement('button', { className: 'btn-secondary' }, 'Ver disponibilidad')
+          )
+        )
+      )
+    )
+  );
+}
   };
 
   const prevImage = () => {

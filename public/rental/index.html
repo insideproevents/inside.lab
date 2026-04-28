@@ -8,14 +8,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="../rental-app.css">
   <style>
+    /* Overrides para integrar con el sitio */
     .bg-dark-light.sticky, .bg-dark.py-2, nav.bg-dark { display: none !important; }
     .header.scrolled { background-color: #070A12 !important; backdrop-filter: none !important; }
     .header { background-color: #070A12 !important; }
     .nav-link:hover { color: #73f7b7 !important; }
     .btn-outline:hover { background-color: #73f7b7 !important; color: #070A12 !important; }
   </style>
-  <link rel="stylesheet" href="assets/index-CHzd7RjS.css">
 </head>
   <body>
     <!-- Header -->
@@ -50,16 +51,20 @@
 
   <div id="root"></div>
 
-  <!-- React and ReactDOM from CDN -->
-  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <!-- React y ReactDOM desde CDN -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
   <script>
     window.ba = React;
     window.r = React;
     window.mr = ReactDOM;
   </script>
 
+  <!-- Scripts globales del sitio -->
   <script src="../script.js"></script>
-  <script src="assets/index-uTgSp89C.js"></script>
+
+  <!-- Catálogo y aplicación rental (fuente) -->
+  <script src="../rental-catalog.js"></script>
+  <script src="../rental-app.js"></script>
 </body>
 </html>
