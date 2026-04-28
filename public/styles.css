@@ -1151,3 +1151,46 @@ html {
       scroll-behavior: auto;
     }
 }
+
+/* Rental after hero section */
+.rental-after-hero {
+  padding: 4rem 1.5rem;
+  text-align: center;
+  background-color: var(--bg-secondary);
+}
+
+.rental-after-hero-content {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.rental-after-hero .section-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  display: inline-block;
+}
+
+.rental-after-hero .section-title {
+  font-family: var(--font-display);
+  font-size: 2.25rem;
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--text-primary);
+  margin-bottom: 0;
+  display: inline-block;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .rental-after-hero .section-title {
+    font-size: 1.75rem;
+  }
+  
+  .rental-after-hero {
+    padding: 3rem 1rem;
+  }
+}
