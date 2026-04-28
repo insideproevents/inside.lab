@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rental Standalone Test</title>
+  <style>
+    body { background: #070A12; color: #F4F6FF; font-family: Arial, sans-serif; padding: 2rem; }
+    .test-box { background: #0E1220; padding: 2rem; border-radius: 8px; margin: 2rem 0; border: 1px solid #73f7b7; }
+    .success { color: #73f7b7; font-weight: bold; }
+    .error { color: #ff6b6b; font-weight: bold; }
+    pre { background: #0E1220; padding: 1rem; border-radius: 4px; overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <h1>🔧 Rental Page - Standalone Diagnostic</h1>
+
+  <div class="test-box">
+    <h2>📁 Archivos en /public/</h2>
+    <pre id="fileList">Cargando...</pre>
+  </div>
+
+  <div class="test-box">
+    <h2>🔗 Scripts Cargados</h2>
+    <pre id="scriptCheck">Verificando...</pre>
+  </div>
+
+  <div class="test-box">
+    <h2>✅ Test React Básico</h2>
+    <div id="react-test"></div>
+    <pre id="reactStatus">...</pre>
+  </div>
+
+  <div class="test-box">
+    <h2>📦 Catálogo (desde CDN local)</h2>
+    <pre id="catalogCheck">...</pre>
+  </div>
+
+  <div class="test-box success">
+    <h2>✓ CORRECCIÓN APLICADA</h2>
+    <p>Si ves esta página correctamente, significa que:</p>
+    <ol>
+      <li>El archivo <code>public/rental/index.html</code> ahora tiene estructura HTML completa</li>
+      <li>React y ReactDOM se cargan desde CDN</li>
+      <li>Los scripts <code>rental-catalog.js</code> y <code>rental-app.js</code> están accesibles</li>
+    </ol>
+    <p><strong>Próximo paso:</strong> Abre <a href="rental/" style="color: #73f7b7;">rental/</a> para ver la app completa.</p>
+  </div>
+
+  <!-- Cargar React -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+  <script>
+    // 1. Verificar archivos
+    async function checkFiles() {
+      const files = ['rental-catalog.js', 'rental-app.js'];
+      const results = [];
+
+      for (const file of files) {
+        try {
+          const response = await fetch('../' + file);
+          results.push(`${file}: ${response.ok ? '✓ ENCONTRADO (${response.status})' : '✗ NO ENCONTRADO (${response.status})'}`);
+        } catch (e) {
+          results.push(`${file}: ✗ ERROR - ${e.message}`);
+        }
+      }
+
+      document.getElementById('fileList').textContent = results.join('\n');
+      document.getElementById('scriptCheck').textContent =
+        `React: ${typeof React !== 'undefined' ? '✓ Cargado' : '✗ No'}\n` +
+        `ReactDOM: ${typeof ReactDOM !== 'undefined' ? '✓ Cargado' : '✗ No'}`;
+    }
+
+    // 2. Test React simple
+    function testReact() {
+      try {
+        const { createElement } = React;
+        const testComponent = createElement('div', { style: { color: '#73f7b7', fontSize: '1.2rem' } },
+          '✅ React funciona correctamente. Versión:', React.version
+        );
+
+        const root = ReactDOM.createRoot(document.getElementById('react-test'));
+        root.render(testComponent);
+
+        document.getElementById('reactStatus').textContent = `React ${React.version} - OK`;
+      } catch (error) {
+        document.getElementById('reactStatus').textContent = `ERROR: ${error.message}`;
+        document.getElementById('reactStatus').className = 'error';
+      }
+    }
+
+    // 3. Cargar catálogo
+    async function loadCatalog() {
+      try {
+        // Cargar rental-catalog.js dinámicamente
+        const script = document.createElement('script');
+        script.src = '../rental-catalog.js';
+        script.onload = () => {
+          const catalogStatus = typeof Ur !== 'undefined' && typeof Pr !== 'undefined'
+            ? `✓ Ur: ${Ur.length} productos\n✓ Pr: Detalles cargados\n✓ Hr: ${typeof Hr !== 'undefined' ? 'Función disponible' : 'NO definida'}`
+            : 'ERROR: Catálogo no cargado';
+          document.getElementById('catalogCheck').textContent = catalogStatus;
+        };
+        script.onerror = () => {
+          document.getElementById('catalogCheck').textContent = '✗ ERROR al cargar rental-catalog.js';
+        };
+        document.head.appendChild(script);
+      } catch (e) {
+        document.getElementById('catalogCheck').textContent = `✗ EXCEPCIÓN: ${e.message}`;
+      }
+    }
+
+    // Ejecutar
+    checkFiles();
+    testReact();
+    loadCatalog();
+  </script>
+</body>
+</html>

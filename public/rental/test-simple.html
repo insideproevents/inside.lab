@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Rental - INSIDE:LAB</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #070A12;
+      color: #F4F6FF;
+      padding: 2rem;
+    }
+    #root {
+      min-height: 100vh;
+    }
+    .test {
+      background: #0E1220;
+      padding: 2rem;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .test h1 {
+      color: #73f7b7;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <!-- Test simple sin React primero -->
+  <script>
+    document.getElementById('root').innerHTML = `
+      <div class="test">
+        <h1>Rental Page Test</h1>
+        <p>Si ves esto, el HTML se carga correctamente.</p>
+      </div>
+    `;
+  </script>
+</body>
+</html>
