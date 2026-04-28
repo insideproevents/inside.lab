@@ -1,24 +1,91 @@
+// ============================================================
+// INSIDE:LAB - Catálogo de Equipos DJ Profesionales
+// Archivo: rental-catalog.js
+// Versión: 1.0.0 - Código limpio y funcional
+// ============================================================ 
+
 /**
- * Catálogo Ur: 12 productos de equipos de DJ profesionales
- * Archivo limpio - reemplaza el bundle minificado original
+ * Catálogo Ur: Arreglo de 12 productos de equipos DJ
+ * Sin elementos vacíos, todos con id, nombre e imagen
  */
 const Ur = [
-  { id: 1, name: "Pioneer CDJ-3000", image: "/images/pioneer-cdj3000.jpg", category: "cdj" },
-  { id: 2, name: "Pioneer CDJ2000nx2", image: "/images/pioneer-cdj2000nx2.jpg", category: "cdj" },
-  { id: 3, name: "Pioneer DJM 900nx2", image: "/images/pioneer-djm900nx2.jpg", category: "mixer" },
-  { id: 4, name: "Pioneer DJM-V10", image: "/images/pioneer-djm-v10.jpg", category: "mixer" },
-  { id: 5, name: "Pioneer DJM-A9", image: "/images/pioneer-djm-a9.jpg", category: "mixer" },
-  { id: 6, name: "Pioneer DJM-S11", image: "/images/pioneer-djm-s11.jpg", category: "mixer" },
-  { id: 7, name: "Pioneer DJM S9", image: "/images/pioneer-djm-s9.jpg", category: "mixer" },
-  { id: 8, name: "Pioneer DJM-900nxs2", image: "/images/pioneer-djm900nx2.jpg", category: "mixer" },
-  { id: 9, name: "Playdifferently Model 1", image: "/images/model1.jpg", category: "mixer" },
-  { id: 10, name: "Pioneer XDJ-XZ All in One", image: "/images/pioneer-xdj-xz.jpg", category: "cdj" },
-  { id: 11, name: "Xone 96", image: "/images/xone96.png", category: "mixer" },
-  { id: 12, name: "Allen Heath K2", image: "/images/xone-k2.webp", category: "mixer" }
+  {
+    id: 1,
+    name: "Pioneer CDJ-3000",
+    image: "/images/pioneer-cdj3000.jpg",
+    category: "cdj"
+  },
+  {
+    id: 2,
+    name: "Pioneer CDJ2000nx2",
+    image: "/images/pioneer-cdj2000nx2.jpg",
+    category: "cdj"
+  },
+  {
+    id: 3,
+    name: "Pioneer DJM 900nx2",
+    image: "/images/pioneer-djm900nx2.jpg",
+    category: "mixer"
+  },
+  {
+    id: 4,
+    name: "Pioneer DJM-V10",
+    image: "/images/pioneer-djm-v10.jpg",
+    category: "mixer"
+  },
+  {
+    id: 5,
+    name: "Pioneer DJM-A9",
+    image: "/images/pioneer-djm-a9.jpg",
+    category: "mixer"
+  },
+  {
+    id: 6,
+    name: "Pioneer DJM-S11",
+    image: "/images/pioneer-djm-s11.jpg",
+    category: "mixer"
+  },
+  {
+    id: 7,
+    name: "Pioneer DJM S9",
+    image: "/images/pioneer-djm-s9.jpg",
+    category: "mixer"
+  },
+  {
+    id: 8,
+    name: "Pioneer DJM-900nxs2",
+    image: "/images/pioneer-djm900nx2.jpg",
+    category: "mixer"
+  },
+  {
+    id: 9,
+    name: "Playdifferently Model 1",
+    image: "/images/model1.jpg",
+    category: "mixer"
+  },
+  {
+    id: 10,
+    name: "Pioneer XDJ-XZ All in One",
+    image: "/images/pioneer-xdj-xz.jpg",
+    category: "cdj"
+  },
+  {
+    id: 11,
+    name: "Xone 96",
+    image: "/images/xone96.png",
+    category: "mixer"
+  },
+  {
+    id: 12,
+    name: "Allen Heath K2",
+    image: "/images/xone-k2.webp",
+    category: "mixer"
+  }
 ];
 
 /**
  * Objeto Pr: Descripciones detalladas de cada producto
+ * Incluye descripción, especificaciones técnicas y galería de fotos
  */
 const Pr = {
   1: {
@@ -253,17 +320,21 @@ const Pr = {
 
 /**
  * Función Hr(): Renderiza la UI completa con catálogo y modal interactivo
+ * Incluye: catálogo de productos, filtros, galería de fotos y modal detallado
  */
 function Hr() {
+  // Estados del componente
   const [selectedProduct, setSelectedProduct] = React.useState(null);
   const [currentImageIndex, setCurrentImageIndex] = React.useState(0);
   const [filter, setFilter] = React.useState('all');
 
+  // Cierra el modal y resetea el carrusel
   const closeModal = () => {
     setSelectedProduct(null);
     setCurrentImageIndex(0);
   };
 
+  // Navegación del carrusel de imágenes
   const nextImage = () => {
     if (selectedProduct && selectedProduct.gallery && selectedProduct.gallery.length > 1) {
       setCurrentImageIndex((prev) => 
@@ -280,22 +351,36 @@ function Hr() {
     }
   };
 
+  // Manejo de teclado para accesibilidad
   React.useEffect(() => {
     const handleKeyPress = (e) => {
       if (!selectedProduct) return;
-      if (e.key === 'Escape') closeModal();
-      if (e.key === 'ArrowRight') nextImage();
-      if (e.key === 'ArrowLeft') prevImage();
+      switch(e.key) {
+        case 'Escape':
+          closeModal();
+          break;
+        case 'ArrowRight':
+          nextImage();
+          break;
+        case 'ArrowLeft':
+          prevImage();
+          break;
+        default:
+          break;
+      }
     };
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
   }, [selectedProduct]);
 
+  // Filtra productos por categoría
   const filteredProducts = filter === 'all' 
     ? Ur 
     : Ur.filter(p => p.category === filter);
 
+  // Render principal
   return React.createElement('div', { className: 'rental-app' },
+    // Header con filtros
     React.createElement('header', { className: 'app-header' },
       React.createElement('div', { className: 'container' },
         React.createElement('h1', null, 'INSIDE:LAB - Equipos DJ Profesionales'),
@@ -315,6 +400,8 @@ function Hr() {
         )
       )
     ),
+
+    // Catálogo principal
     React.createElement('main', { className: 'catalog' },
       React.createElement('div', { className: 'container' },
         React.createElement('div', { className: 'product-grid' },
@@ -348,6 +435,8 @@ function Hr() {
         )
       )
     ),
+
+    // Modal interactivo con galería
     selectedProduct && React.createElement('div', { 
       className: 'modal-overlay',
       onClick: closeModal,
@@ -359,11 +448,14 @@ function Hr() {
         className: 'modal-content',
         onClick: e => e.stopPropagation()
       },
+        // Botón cerrar modal
         React.createElement('button', { 
           className: 'modal-close',
           onClick: closeModal,
           'aria-label': 'Cerrar modal'
         }, '×'),
+
+        // Galería de fotos interactiva
         React.createElement('div', { className: 'modal-gallery' },
           React.createElement('div', { className: 'gallery-main' },
             selectedProduct.gallery && selectedProduct.gallery.length > 0 && (
@@ -376,6 +468,8 @@ function Hr() {
               })
             )
           ),
+          
+          // Miniaturas de la galería
           selectedProduct.gallery && selectedProduct.gallery.length > 1 && React.createElement('div', { className: 'gallery-thumbs' },
             selectedProduct.gallery.map((img, idx) =>
               React.createElement('img', {
@@ -383,11 +477,18 @@ function Hr() {
                 src: img,
                 alt: `${selectedProduct.name} - miniatura ${idx + 1}`,
                 className: currentImageIndex === idx ? 'active' : '',
-                onClick: (e) => { e.stopPropagation(); setCurrentImageIndex(idx); },
-                onError: (e) => { e.target.style.display = 'none'; }
+                onClick: (e) => {
+                  e.stopPropagation();
+                  setCurrentImageIndex(idx);
+                },
+                onError: (e) => {
+                  e.target.style.display = 'none';
+                }
               })
             )
           ),
+
+          // Controles de navegación del carrusel
           selectedProduct.gallery && selectedProduct.gallery.length > 1 && (
             React.createElement('div', { className: 'gallery-controls' },
               React.createElement('button', { 
@@ -403,9 +504,12 @@ function Hr() {
             )
           )
         ),
+
+        // Información detallada del producto
         React.createElement('div', { className: 'modal-info' },
           React.createElement('h2', { id: 'modal-title' }, selectedProduct.name),
           React.createElement('p', { className: 'product-desc' }, selectedProduct.desc),
+          
           React.createElement('div', { className: 'product-specs' },
             React.createElement('h3', null, 'Especificaciones Técnicas'),
             React.createElement('ul', null,
@@ -414,6 +518,7 @@ function Hr() {
               )
             )
           ),
+
           React.createElement('div', { className: 'modal-actions' },
             React.createElement('button', { className: 'btn-primary' }, 'Solicitar cotización'),
             React.createElement('button', { className: 'btn-secondary' }, 'Ver disponibilidad')
@@ -421,6 +526,8 @@ function Hr() {
         )
       )
     ),
+
+    // Footer
     React.createElement('footer', { className: 'app-footer' },
       React.createElement('div', { className: 'container' },
         React.createElement('p', null, '© 2026 INSIDE:LAB - Todos los derechos reservados')
@@ -429,16 +536,22 @@ function Hr() {
   );
 }
 
+// Render final: Monta la aplicación React en el DOM
 const rootEl = document.getElementById('root');
 if (rootEl) {
   const root = ReactDOM.createRoot(rootEl);
-  root.render(React.createElement(React.StrictMode, null, React.createElement(Hr)));
+  root.render(React.createElement(React.StrictMode, null,
+    React.createElement(Hr)
+  ));
 } else {
+  console.error('No se encontró el elemento #root en el DOM');
   const newRoot = document.createElement('div');
   newRoot.id = 'root';
   document.body.appendChild(newRoot);
   const root = ReactDOM.createRoot(newRoot);
-  root.render(React.createElement(React.StrictMode, null, React.createElement(Hr)));
+  root.render(React.createElement(React.StrictMode, null,
+    React.createElement(Hr)
+  ));
 }
 
 console.log('INSIDE:LAB Rental App - Cargada correctamente');
