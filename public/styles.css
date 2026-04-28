@@ -1158,6 +1158,7 @@ section {
   margin: 0 auto;
   text-align: center;
   padding: 2rem 1.5rem;
+  background-color: rgba(255, 0, 0, 0.1); /* Debug background */
 }
 
 .rental-after-hero .section-label {
@@ -1167,6 +1168,9 @@ section {
   text-transform: uppercase;
   color: var(--text-secondary);
   margin-bottom: 1rem;
+  background-color: rgba(0, 255, 0, 0.2); /* Debug background */
+  padding: 0.5rem;
+  display: block !important;
 }
 
 .rental-after-hero .section-title {
@@ -1176,6 +1180,9 @@ section {
   line-height: 1.2;
   color: var(--text-primary);
   margin-bottom: 0;
+  background-color: rgba(0, 0, 255, 0.2); /* Debug background */
+  padding: 0.5rem;
+  display: block !important;
 }
 
 /* Responsive adjustments */
