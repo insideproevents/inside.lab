@@ -53,7 +53,12 @@
   <!-- React and ReactDOM from CDN -->
   <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-  <script>window.r=React;window.ba=ReactDOM;</script>
+  <script>
+    // Shim para el bundle React minificado
+    window.a = React;
+    window.r = React;
+    window.mr = ReactDOM;
+  </script>
 
   <script src="../script.js"></script>
   <script type="module" crossorigin src="assets/index-uTgSp89C.js?v=2"></script>
