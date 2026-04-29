@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📐 Preview - Título Rental</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #070A12;
+      --bg-secondary: #0E1220;
+      --accent: #73f7b7;
+      --accent-hover: #9dfecd;
+      --text-primary: #F4F6FF;
+      --text-secondary: #A6A9B6;
+      --border: rgba(244, 246, 255, 0.1);
+      --font-display: 'Sora', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      margin: 0;
+      padding: 2rem;
+    }
+
+    .preview-box {
+      max-width: 800px;
+      margin: 0 auto;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 3rem;
+      margin-top: 2rem;
+    }
+
+    /* ESTILOS DEL TÍTULO RENTAL (copiados de rental-app.css) */
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding: 2rem 0;
+    }
+
+    .section-header .logo-main {
+      display: block;
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 800;
+      color: var(--text-primary);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .section-header .logo-main .accent {
+      color: var(--accent);
+    }
+
+    .section-header .subtitle {
+      display: block;
+      font-family: var(--font-body);
+      font-size: clamp(1rem, 2.5vw, 1.5rem);
+      font-weight: 500;
+      color: var(--text-secondary);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-top: 0.5rem;
+    }
+
+    .demo-filters {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    .demo-filters button {
+      background: transparent;
+      border: 1px solid rgba(244, 246, 255, 0.2);
+      color: var(--text-secondary);
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+    }
+
+    .demo-filters button:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .demo-filters button.active {
+      background: var(--accent);
+      color: var(--bg-primary);
+      border-color: var(--accent);
+      font-weight: 600;
+    }
+
+    .explanation {
+      margin-top: 3rem;
+      padding: 1.5rem;
+      background: rgba(115, 247, 183, 0.05);
+      border-left: 4px solid var(--accent);
+      border-radius: 8px;
+    }
+
+    .explanation h3 {
+      margin-top: 0;
+      color: var(--accent);
+    }
+
+    code {
+      background: rgba(255,255,255,0.1);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <div style="text-align: center; margin-bottom: 2rem;">
+    <h1 style="color: var(--accent); margin: 0;">📐 Vista Previa del Título</h1>
+    <p style="color: var(--text-secondary);">Diseño de la página Rental - Formato de 2 líneas</p>
+  </div>
+
+  <div class="preview-box">
+    <!-- Título Rental (simulación) -->
+    <div class="section-header">
+      <span class="logo-main">
+        <span>INSIDE</span>
+        <span class="accent">:</span>
+        <span>LAB</span>
+      </span>
+      <span class="subtitle">Equipos DJ Profesionales</span>
+    </div>
+
+    <!-- Filtros de ejemplo -->
+    <div class="demo-filters">
+      <button class="active">Todos</button>
+      <button>CDJs</button>
+      <button>Mezcladores</button>
+    </div>
+
+    <div style="text-align: center; margin-top: 2rem; color: var(--text-secondary); font-size: 0.875rem;">
+      ← El título aparece centrado arriba de los filtros
+    </div>
+  </div>
+
+  <div class="explanation" style="max-width: 800px; margin: 2rem auto;">
+    <h3>📝 Especificaciones</h3>
+    <ul style="line-height: 2;">
+      <li><strong>Línea 1:</strong> "INSIDE:LAB" con los <code>:</code> en <span style="color: var(--accent);">verde #73f7b7</span></li>
+      <li><strong>Línea 2:</strong> "Equipos DJ Profesionales" en tamaño menor, centrado, mayúsculas</li>
+      <li><strong>Tipografía:</strong> Sora (bold) para logo, Inter (medium) para subtítulo</li>
+      <li><strong>Fuente:</strong> Variables CSS de <code>styles.css</code></li>
+      <li><strong>Responsive:</strong> clamp() ajusta entre 2.5rem→4rem y 1rem→1.5rem</li>
+    </ul>
+  </div>
+
+  <div style="text-align: center; margin-top: 2rem;">
+    <a href="rental/" style="display: inline-block; background: var(--accent); color: var(--bg-primary); padding: 1rem 2rem; border-radius: 8px; text-decoration: none; font-weight: bold;">
+      🔗 Ver Página Rental Completa
+    </a>
+  </div>
+
+  <footer style="text-align: center; margin-top: 3rem; color: var(--text-secondary); font-size: 0.875rem; padding-top: 1rem; border-top: 1px solid var(--border);">
+    <p>Preview generada el 28 de Abril 2026</p>
+    <p>INSIDE:LAB - Rental Page Title Design</p>
+  </footer>
+</body>
+</html>

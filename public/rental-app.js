@@ -278,6 +278,33 @@ function Hr() {
     // Catálogo principal (sin header, el header está en el HTML estático)
     React.createElement('main', { className: 'catalog' },
       React.createElement('div', { className: 'container' },
+        // Header del catálogo con título en 2 líneas
+        React.createElement('div', { className: 'section-header' },
+          React.createElement('span', { className: 'logo-main' },
+            React.createElement('span', null, 'INSIDE'),
+            React.createElement('span', { className: 'accent' }, ':'),
+            React.createElement('span', null, 'LAB')
+          ),
+          React.createElement('span', { className: 'subtitle' }, 'Equipos DJ Profesionales')
+        ),
+
+        // Filtros
+        React.createElement('div', { className: 'filters' },
+          React.createElement('button', {
+            className: filter === 'all' ? 'active' : '',
+            onClick: () => setFilter('all')
+          }, 'Todos'),
+          React.createElement('button', {
+            className: filter === 'cdj' ? 'active' : '',
+            onClick: () => setFilter('cdj')
+          }, 'CDJs'),
+          React.createElement('button', {
+            className: filter === 'mixer' ? 'active' : '',
+            onClick: () => setFilter('mixer')
+          }, 'Mezcladores')
+        ),
+
+        // Grid de productos
         React.createElement('div', { className: 'product-grid' },
           filteredProducts.map((product) => {
             const details = Pr[product.id];

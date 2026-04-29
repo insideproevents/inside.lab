@@ -36,16 +36,42 @@ body {
   color: var(--text-primary);
 }
 
-/* Container */
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
-}
-
-/* Catálogo */
+/* Sección del catálogo */
 .catalog {
   padding: 4rem 0;
+}
+
+/* Header del catálogo - Título en 2 líneas */
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 2rem 0;
+}
+
+.section-header .logo-main {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.section-header .logo-main .accent {
+  color: var(--accent);
+}
+
+.section-header .subtitle {
+  display: block;
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  font-weight: 500;
+  color: var(--text-secondary);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-top: 0.5rem;
 }
 
 /* Grid de productos */
@@ -476,20 +502,42 @@ body {
   padding: 0 1rem;
 }
 
-/* Header de la app rental */
-.app-header {
-  background: var(--bg-secondary);
-  border-bottom: 1px solid var(--border);
-  padding: 3rem 0;
+/* Header de la app rental (sin header, usa el del HTML estático)
+   Pero mantenemos estilos para el título del catálogo si es necesario */
+.rental-app > .catalog > .container > .section-header {
+  text-align: center;
+  margin-bottom: 3rem;
 }
 
-.app-header h1 {
+.rental-app .section-header .logo-main {
+  display: block;
   font-family: var(--font-display);
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 700;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 800;
   color: var(--text-primary);
-  text-align: center;
-  margin: 0 0 1.5rem;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.rental-app .section-header .logo-main .accent {
+  color: var(--accent);
+}
+
+.rental-app .section-header .subtitle {
+  display: block;
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  font-weight: 500;
+  color: var(--text-secondary);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-top: 0.5rem;
+}
+
+/* Ajuste del header si es necesario */
+.app-header {
+  display: none; /* El header viene del HTML estático */
 }
 
 /* Filtros */
