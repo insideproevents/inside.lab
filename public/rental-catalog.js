@@ -323,7 +323,10 @@ const Pr = {
  * Incluye: catálogo de productos, filtros, galería de fotos y modal detallado
  */
 function Hr() {
-  // Estados del componente
+  console.log('🏪 Hr() component called');
+  // Estados del componente - usar React desde window para asegurar disponibilidad
+  const React = window.React;
+  console.log('   React version:', React ? React.version : 'not available');
   const [selectedProduct, setSelectedProduct] = React.useState(null);
   const [currentImageIndex, setCurrentImageIndex] = React.useState(0);
   const [filter, setFilter] = React.useState('all');

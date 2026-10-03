@@ -51,13 +51,13 @@
 
   <div id="root"></div>
 
-  <!-- React y ReactDOM desde CDN -->
-  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <!-- React y ReactDOM desde CDN (versión específica 18.2.0) -->
+  <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
   <script>
-    window.ba = React;
-    window.r = React;
-    window.mr = ReactDOM;
+    // Shim para compatibilidad
+    window.React = React;
+    window.ReactDOM = ReactDOM;
   </script>
 
   <!-- Scripts globales del sitio -->
